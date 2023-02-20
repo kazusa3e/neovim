@@ -1,0 +1,6 @@
+require 'options'
+require 'theme'
+require 'plugins'
+require 'keybindings'
+require 'lsp'
+require 'completion'
