@@ -105,7 +105,7 @@ function keybindings.toggleterm()
             python = string.format('python3 "%s"', s('%:t')),
             java = string.format('javac "%s" && java "%s"', s('%:t'), s('%:t:r')),
             cpp = string.format('clang++ -g "%s" && ./a.out', s('%:t')),
-            c = string.format('clang -g "%s" && ./a.out', s('%:t'))
+            c = string.format('cc -g "%s" && ./a.out', s('%:t'))
             -- TODO: more fts be added here
         }
         for k, v in pairs(d) do
@@ -160,7 +160,13 @@ function keybindings.glance()
     map('n', 'gR', '<CMD>Glance references<CR>')
 end
 
-map('n', 'a', '<Plug>(EasyAlign)')
-map('x', 'a', '<Plug>(EasyAlign)')
+function keybindings.easy_align()
+    map('n', 'e', '<Plug>(EasyAlign)')
+    map('x', 'e', '<Plug>(EasyAlign)')
+end
+
+function keybindings.treesj()
+    map('n', '<leader>j', '<CMD>TSJToggle<CR>')
+end
 
 return keybindings

@@ -73,7 +73,7 @@ lspconfig['tsserver'].setup {}
 lspconfig['clangd'].setup {}
 lspconfig['texlab'].setup {}
 lspconfig['vimls'].setup {}
-lspconfig['dockerls'].setup {}
-lspconfig['yamlls'].setup {}
+-- lspconfig['dockerls'].setup {}
+-- lspconfig['yamlls'].setup {}
 
 require 'lsp/null-ls'

@@ -1,8 +1,7 @@
 vim.o.background = 'light'
 local colors = require 'ayu.colors'
 colors.generate()
--- local bg2 = colors.panel_border
-local bg2 = '#feeeeb'
+local bg2 = '#e2f4f0'
 
 require 'ayu'.setup {
     overrides = {

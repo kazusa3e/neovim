@@ -36,7 +36,6 @@ require 'packer'.startup {
         use 'kevinhwang91/nvim-ufo'
 
         -- appearences
-        -- use { 'shatur/neovim-ayu', commit = '88f427fbdd9ba7fe2c60f7c6e6ba68834b39ccd1' }
         use 'shatur/neovim-ayu'
         use 'kyazdani42/nvim-web-devicons'
         use 'nvim-lualine/lualine.nvim'
@@ -74,11 +73,10 @@ require 'packer'.startup {
         use 'RRethy/vim-illuminate'
         use 'ray-x/lsp_signature.nvim'
         use 'monaqa/dial.nvim'
-        use 'AckslD/nvim-trevJ.lua'
         use 'kylechui/nvim-surround'
-        -- use 'phaazon/hop.nvim'
         use 'michaeljsmith/vim-indent-object'
         use 'junegunn/vim-easy-align'
+        use 'Wansmer/treesj'
 
         if packer_bootstrap then
             require 'packer'.sync()
@@ -102,17 +100,15 @@ require 'plugins/toggleterm'
 require 'plugins/lastplace'
 require 'plugins/ufo'
 require 'plugins/vimtex'
-
 require 'plugins/lspsaga'
-
 require 'plugins/treesitter'
-
 require 'plugins/autopairs'
 require 'plugins/comment'
 require 'plugins/illuminate'
 require 'plugins/dial'
 require 'plugins/surround'
 require 'plugins/lsp_signature'
--- require 'plugins/hop'
 require 'plugins/glance'
 require 'plugins/todo-comments'
+require 'plugins/easy-align'
+require 'plugins/treesj'
