@@ -1,7 +1,8 @@
 require 'toggleterm'.setup {
     highlights = {
         NormalFloat = { link = 'CmpNormal' },
-        FloatBorder = { link = 'CmpBorder' }
+        FloatBorder = { link = 'CmpBorder' },
+        Normal = { link = 'Normal' },
     }
 }
 

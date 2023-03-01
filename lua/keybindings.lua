@@ -90,6 +90,8 @@ function keybindings.session_manager()
 end
 
 function keybindings.toggleterm()
+    map('n', '<C-w>', '<CMD>ToggleTerm<CR>')
+    map('t', '<C-w>', '<CMD>ToggleTerm<CR>')
     map('t', '`', '<C-\\><C-n>')
     map('n', '<C-q>', '<CMD>ToggleTerm direction=float<CR>')
     map('t', '<C-q>', '<CMD>ToggleTerm direction=float<CR>')
