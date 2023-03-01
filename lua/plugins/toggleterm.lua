@@ -7,3 +7,8 @@ require 'toggleterm'.setup {
 }
 
 require 'keybindings'.toggleterm()
+
+vim.cmd [[
+    autocmd TermOpen * setlocal nonumber
+    autocmd TermOpen * startinsert
+]]
