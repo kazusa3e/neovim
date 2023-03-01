@@ -96,23 +96,21 @@ function keybindings.toggleterm()
     map('n', '<C-q>', '<CMD>ToggleTerm direction=float<CR>')
     map('t', '<C-q>', '<CMD>ToggleTerm direction=float<CR>')
     map('n', '<leader>r', function()
-        local term_ok, term = pcall(require, 'toggleterm')
-        if not term_ok then return end
         local ft = vim.bo.filetype
         local function s(modifier)
             return vim.fn.expand(modifier)
         end
 
         local d = {
-            python = string.format('python3 "%s"', s('%:t')),
-            java = string.format('javac "%s" && java "%s"', s('%:t'), s('%:t:r')),
-            cpp = string.format('clang++ -g "%s" && ./a.out', s('%:t')),
-            c = string.format('cc -g "%s" && ./a.out', s('%:t'))
+            python = string.format('python "%s"', s('%.')),
+            c = string.format('./a.out'),
+            cpp = string.format('./a.out'),
             -- TODO: more fts be added here
         }
+
         for k, v in pairs(d) do
             if k == ft then
-                term.exec(v, 1, nil, s('%:p:h'), 'float')
+                require 'toggleterm'.exec(v, 1, nil, vim.api.nvim_command_output('pwd'), 'float')
             end
         end
     end)
