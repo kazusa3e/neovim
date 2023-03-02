@@ -43,18 +43,18 @@ require 'lualine'.setup {
             { 'filename', path = 1, symbols = { modified = '?', readonly = '!', unnamed = '*' } },
         },
         lualine_c = {
-            { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } }
-        },
-        lualine_x = {
-            { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
-            'encoding',
-            'filetype'
-        },
-        lualine_y = {
             {
                 'diagnostics',
                 symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
             }
+        },
+        lualine_x = {
+            { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } }
+        },
+        lualine_y = {
+            { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
+            'encoding',
+            'filetype'
         },
         lualine_z = {
             { 'branch', icon = 'שׂ' },
