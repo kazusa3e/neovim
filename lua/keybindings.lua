@@ -167,4 +167,11 @@ function keybindings.treesj()
     map('n', '<leader>j', '<CMD>TSJToggle<CR>')
 end
 
+function keybindings.taboo()
+    map('n', '<leader>hr', function()
+        local tabname = vim.fn.input("Tab name: ")
+        vim.cmd(string.format("TabooRename %s", tabname))
+    end)
+end
+
 return keybindings
