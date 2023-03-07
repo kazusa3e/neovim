@@ -5,6 +5,7 @@ local bg2 = '#e2f4f0'
 
 require 'ayu'.setup {
     overrides = {
+        Comment = { fg = colors.comment },
         NormalFloat = { bg = bg2 },
         FloatBorder = { bg = bg2, fg = bg2 },
         CmpNormal = { bg = bg2 },
