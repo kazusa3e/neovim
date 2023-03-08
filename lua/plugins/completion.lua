@@ -5,6 +5,7 @@ return {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
+        'dmitmel/cmp-cmdline-history',
         'onsails/lspkind-nvim',
         'L3MON4D3/LuaSnip'
     },
@@ -61,7 +62,13 @@ return {
 
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = {{{ name = 'buffer' }}, {{ name = 'cmdline' }}, }
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }, {
+                { name = 'cmdline_history' }
+            })
         })
 
         require 'luasnip.loaders.from_snipmate'.load { path = { 'snippets' } }
