@@ -9,6 +9,7 @@ return {
 
   {
     "numToStr/Comment.nvim",
+    lazy = false,
     keys = {
       { "qq", mode = "n", desc = "Comment toggle current line" },
       { "q", mode = { "n", "o" }, desc = "Comment toggle linewise" },
