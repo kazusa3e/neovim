@@ -5,54 +5,26 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
-            local lspconfig = require 'lspconfig'
-
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities.textDocument.foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true
+            vim.diagnostic.config {
+                virtual_text = { prefix = '' },
             }
 
-            lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, {
-                on_attach = function(client, bufnr)
-                    -- diagnostic
-                    vim.diagnostic.config {
-                        signs = false,
-                        underline = true,
-                        virtual_text = { prefix = '' },
-                        severity_sort = true,
-                        update_in_insert = true
-                    }
+            vim.lsp.config['lua-language-server'] = require 'lang/lua_ls'
 
-                    vim.cmd [[
-                        sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
-                        sign define DiagnosticSignInfo text= texthl=DiagnosticSignHint linehl= numhl=
-                        sign define DiagnosticSignWarn text= texthl=DiagnosticSignHint linehl= numhl=
-                        sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
-                    ]]
+            vim.lsp.enable('clangd')
+            vim.lsp.enable('rust_analyzer')
+            vim.lsp.enable('pyright')
+            vim.lsp.enable('ts_ls')
+            vim.lsp.enable('lua_ls')
 
-                    -- hover
-                    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-                        border = 'single'
-                    })
-                end,
-                capabilities = capabilities
-            })
+            vim.lsp.enable('dockerls')
+            vim.lsp.enable('docker_compose_language_service')
 
-
-            -- servers
-            lspconfig['lua_ls'].setup {
-                settings = require 'lang/lua_ls'
-            }
-            lspconfig['ts_ls'].setup {}
-            lspconfig['marksman'].setup {}
-            lspconfig['pyright'].setup {}
-            lspconfig['clangd'].setup {}
-            lspconfig['rust_analyzer'].setup {}
+            vim.lsp.enable('bashls')
         end,
         keys = {
             { 'gd', function() vim.lsp.buf.definition() end },
-            { 'gh', function() vim.lsp.buf.hover() end },
+            { 'gh', function() vim.lsp.buf.hover { border = 'solid' } end },
             { 'gR', function() vim.lsp.buf.rename() end },
             { 'g.', function() vim.lsp.buf.code_action() end },
             { 'gf', function() vim.lsp.buf.format { async = true } end },
