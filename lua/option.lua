@@ -1,5 +1,7 @@
 vim.cmd [[ source $HOME/.vimrc ]]
 
+vim.g.clipboard = 'osc52'
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'markdown',
     command = 'setlocal tw=0'
@@ -20,7 +22,3 @@ safe_umap('n', 'grr')
 safe_umap('n', 'gra')
 safe_umap('n', 'grn')
 
-safe_umap('n', 'Y')
-safe_umap('n', 'YY')
-safe_umap('n', '<leader>y')
-safe_umap('n', '<leader>Y')

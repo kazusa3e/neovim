@@ -311,17 +311,4 @@ return {
         opts = {}
     },
 
-    -- yank
-    {
-        'ojroques/vim-oscyank',
-        keys = {
-            { 'Y',         '<Plug>OSCYankOperator' },
-            -- TODO: keep cursor location
-            { 'YY',        '<Plug>OSCYankOperator_' },
-            -- { '<leader>Y', 'ggVG<Plug>OSCYankVisual' },
-            { '<leader>Y', 'taggVG<Plug>OSCYankVisual`a' },
-            { 'Y',         '<Plug>OSCYankVisual',        mode = 'v' },
-        }
-    }
-
 }
