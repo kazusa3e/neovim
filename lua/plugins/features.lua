@@ -146,6 +146,7 @@ return {
         keys = {
             { '<c-q>', '<cmd>ToggleTerm direction=float<cr>' },
             { '<c-q>', '<cmd>ToggleTerm direction=float<cr>', mode = 't' },
+            { '<c-q>', '<cmd>ToggleTerm direction=float<cr>', mode = 'i' },
             { '`',     '<c-\\><c-n>',                         mode = 't' },
             { '<leader>gg', function()
                 local Terminal = require('toggleterm.terminal').Terminal
