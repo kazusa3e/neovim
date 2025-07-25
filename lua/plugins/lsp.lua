@@ -6,7 +6,13 @@ return {
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
             vim.diagnostic.config {
-                virtual_text = { prefix = '' },
+                -- virtual_text = {
+                --     prefix = '',
+                --     current_line = false
+                -- },
+                virtual_lines = {
+                    current_line = true
+                }
             }
 
             vim.lsp.config['lua-language-server'] = require 'lang/lua_ls'
