@@ -198,19 +198,18 @@ return {
             {
                 '<leader>ne',
                 function()
-                    vim.cmd [[tcd ~/Rei]]
+                    vim.cmd [[tcd ~/wiki]]
                     vim.cmd [[NvimTreeOpen]]
                 end
             },
             {
                 '<leader>nE',
                 function()
-                    vim.cmd [[tcd ~/Rei]]
+                    vim.cmd [[tcd ~/wiki]]
                     vim.cmd [[NvimTreeFindFile]]
                 end
             },
         },
-        ft = "markdown",
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-tree.lua'
@@ -218,8 +217,8 @@ return {
         opts = {
             workspaces = {
                 {
-                    name = 'Rei',
-                    path = '~/Rei'
+                    name = 'wiki',
+                    path = '~/wiki'
                 }
             },
             daily_notes = {
