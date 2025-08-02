@@ -10,6 +10,7 @@ return {
                 --     prefix = '',
                 --     current_line = false
                 -- },
+                severity_sort = true,
                 virtual_lines = {
                     current_line = true
                 }
