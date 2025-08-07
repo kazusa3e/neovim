@@ -291,11 +291,20 @@ return {
     {
         'folke/todo-comments.nvim',
         keys = {
-            { ']t', function() require 'todo-comments'.jump_next() end },
-            { '[t', function() require 'todo-comments'.jump_prev() end }
+            -- { ']t', function() require 'todo-comments'.jump_next() end },
+            -- { '[t', function() require 'todo-comments'.jump_prev() end }
         },
         event = { 'BufReadPost', 'BufNewFile' },
         opts = {}
     },
+
+    -- marks
+    {
+        'chentoast/marks.nvim',
+        event = 'VeryLazy',
+        opts = {
+            default_mappings = false
+        }
+    }
 
 }
