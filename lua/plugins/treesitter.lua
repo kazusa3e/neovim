@@ -4,7 +4,12 @@ return {
         dependencies = {
             {
                 'nvim-treesitter/nvim-treesitter-textobjects',
-                'romgrk/nvim-treesitter-context'
+                {
+                    'romgrk/nvim-treesitter-context',
+                    opts = {
+                        enable = true
+                    }
+                }
             }
         },
         build = ':TSUpdate',
