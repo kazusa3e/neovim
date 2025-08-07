@@ -254,21 +254,9 @@ return {
         'folke/trouble.nvim',
         cmd = 'Trouble',
         keys = {
-            -- { 'gD', '<cmd>Trouble diagnostics toggle<cr>' },
-            -- { 'gl', '<cmd>Trouble lsp toggle<cr>' },
-            -- { 'go', '<cmd>Trouble symbols toggle<cr>' },
-            -- { 'go', '<cmd>Trouble qflist toggle<cr>' },
-            -- { 'gr', function()
-            --     local trouble = require 'trouble'
-            --     if trouble.is_open("lsp_references") then
-            --         trouble.refresh('lsp_references')
-            --     else
-            --         trouble.open('lsp_references')
-            --     end
-            -- end },
         },
         opts = {
-            auto_refresh = true
+            auto_refresh = false
         },
         config = function(_, opts)
             local trouble = require 'trouble'
@@ -284,8 +272,7 @@ return {
             vim.keymap.set('n', 'gD', '<cmd>Trouble diagnostics toggle<cr>')
             vim.keymap.set('n', 'gq', '<cmd>Trouble qflist toggle<cr>')
             vim.keymap.set('n', 'go', '<cmd>Trouble symbols toggle<cr>')
-            vim.keymap.set('n', 'gr', function() open_or_update('lsp_references') end)
-            vim.keymap.set('n', 'gl', function() open_or_update('lsp') end)
+            vim.keymap.set('n', 'gr', function() open_or_update('lsp') end)
         end
     },
 
