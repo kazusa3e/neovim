@@ -41,7 +41,7 @@ return {
             { 'gf', function() vim.lsp.buf.format { async = true } end },
 
             { 'gi', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end },
-            { 'go', function()
+            { 'gu', function()
                 local conf = vim.diagnostic.config()
                 vim.diagnostic.config {
                     virtual_text = not conf.virtual_text
