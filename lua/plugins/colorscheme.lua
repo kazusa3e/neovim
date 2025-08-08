@@ -17,7 +17,11 @@ return {
         },
         config = function(opts, _)
             require 'ayu'.setup(opts)
-            vim.cmd.colorscheme('ayu-mirage')
+            if os.getenv('USE_THEME') == 'light' then
+                vim.cmd.colorscheme('ayu')
+            else
+                vim.cmd.colorscheme('ayu-mirage')
+            end
         end
     }
 }
