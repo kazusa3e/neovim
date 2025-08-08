@@ -296,7 +296,7 @@ return {
         },
         event = { 'BufReadPost', 'BufNewFile' },
         opts = {
-            sign = false,
+            signs = false,
             keywords = {
                 ERROR = {
                     color = 'error',
