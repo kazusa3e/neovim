@@ -16,6 +16,10 @@ return {
                 }
             }
 
+            -- enable inlay hint be default
+            -- WARN: but ikn why rust_analyzer will be failed on startup
+            vim.lsp.inlay_hint.enable(true)
+
             vim.lsp.config['lua-language-server'] = require 'lang/lua_ls'
 
             vim.lsp.enable('clangd')
@@ -37,6 +41,12 @@ return {
             { 'gf', function() vim.lsp.buf.format { async = true } end },
 
             { 'gi', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end },
+            { 'go', function()
+                local conf = vim.diagnostic.config()
+                vim.diagnostic.config {
+                    virtual_text = not conf.virtual_text
+                }
+            end },
         }
     },
 
