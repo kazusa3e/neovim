@@ -295,7 +295,33 @@ return {
             -- { '[t', function() require 'todo-comments'.jump_prev() end }
         },
         event = { 'BufReadPost', 'BufNewFile' },
-        opts = {}
+        opts = {
+            sign = false,
+            keywords = {
+                ERROR = {
+                    color = 'error',
+                    alt = { 'ERR', 'BUG', 'ISSUE', 'FIX', 'FIXME' },
+                },
+                WARN = {
+                    color = 'warning',
+                    alt = { 'WRN', 'WARNING', 'NOTICE' }
+                },
+                INFO = {
+                    color = 'info',
+                    alt = { 'INF', 'NOTE' }
+                },
+                HINT = {
+                    color = 'hint',
+                    alt = { 'DBG', 'TODO' }
+                }
+            },
+            colors = {
+                error = { 'DiagnosticError' },
+                warning = { 'DiagnosticWarn' },
+                info = { 'DiagnosticInfo' },
+                hint = { 'DiagnosticHint' },
+            }
+        }
     },
 
     -- marks
@@ -308,3 +334,4 @@ return {
     }
 
 }
+
