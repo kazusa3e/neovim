@@ -22,16 +22,22 @@ return {
 
             vim.lsp.config['lua-language-server'] = require 'lang/lua_ls'
 
-            vim.lsp.enable('clangd')
-            vim.lsp.enable('rust_analyzer')
-            vim.lsp.enable('pyright')
-            vim.lsp.enable('ts_ls')
-            vim.lsp.enable('lua_ls')
+            local enabled_lsp_servers = {
+                'clangd',
+                'rust_analyzer',
+                'basedpyright',
+                'ruff',
+                'ts_ls',
+                'lua_ls',
+                'dockerls',
+                'docker_compose_language_service',
+                'bashls'
+            }
+            for _, srv in ipairs(enabled_lsp_servers) do
+                vim.lsp.enable(srv)
+            end
 
-            vim.lsp.enable('dockerls')
-            vim.lsp.enable('docker_compose_language_service')
-
-            vim.lsp.enable('bashls')
+            -- TODO: it's time to uninstall mason plugin
         end,
         keys = {
             { 'gd', function() vim.lsp.buf.definition() end },
