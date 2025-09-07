@@ -10,6 +10,7 @@ return {
             local gitblame = require 'gitblame'
             require 'lualine'.setup {
                 options = {
+                    theme = 'ayu',
                     component_separators = '',
                     section_separators = { left = '', right = '' },
                     disabled_filetypes = { 'NvimTree' },
@@ -39,7 +40,8 @@ return {
                     lualine_y = {
                         { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
                         'encoding',
-                        'filetype'
+                        'filetype',
+                        'lsp_status'
                     },
                     lualine_z = {
                         { 'branch', icon = 'שׂ' },
