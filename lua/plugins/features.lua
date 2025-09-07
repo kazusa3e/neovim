@@ -222,7 +222,12 @@ return {
                 }
             },
             daily_notes = {
-                folder = 'Journal'
+                folder = 'Journal/daily',
+                date_format = '%Y%m%d',
+                template = 'daily.md'
+            },
+            templates = {
+                folder = '_templates'
             },
             completion = {
                 nvim_cmp = true
@@ -289,6 +294,7 @@ return {
 
     -- todo highlight
     {
+        -- TODO: use telescope or trouble to filter todos
         'folke/todo-comments.nvim',
         keys = {
             -- { ']t', function() require 'todo-comments'.jump_next() end },
