@@ -35,12 +35,12 @@ return {
                         }
                     },
                     lualine_x = {
-                        { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } }
+                        -- { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } }
+                        { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
                     },
                     lualine_y = {
-                        { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
-                        'encoding',
-                        'filetype',
+                        -- 'encoding',
+                        -- 'filetype',
                         'lsp_status'
                     },
                     lualine_z = {
