@@ -16,7 +16,7 @@ return {
             { '<leader>ao', '<cmd>Telescope oldfiles<cr>' },
             { '<leader>s',  '<cmd>Telescope buffers<cr>' },
             { '<leader>gs', '<cmd>Telescope git_status<cr>' },
-            { 'gp',         '<cmd>Telescope lsp_document_symbols<cr>' },
+            { 'go',         '<cmd>Telescope lsp_document_symbols<cr>' },
         },
         config = function()
             require 'telescope'.setup {
@@ -275,9 +275,8 @@ return {
                 end
             end
             -- TODO: refresh on only special modes
-            vim.keymap.set('n', 'gD', '<cmd>Trouble diagnostics toggle<cr>')
-            vim.keymap.set('n', 'gq', '<cmd>Trouble qflist toggle<cr>')
-            vim.keymap.set('n', 'go', '<cmd>Trouble symbols toggle<cr>')
+            vim.keymap.set('n', 'gq', '<cmd>Trouble diagnostics toggle<cr>')
+            vim.keymap.set('n', 'gp', '<cmd>Trouble symbols toggle<cr>')
             vim.keymap.set('n', 'gr', function() open_or_update('lsp') end)
         end
     },
@@ -295,9 +294,9 @@ return {
 
     -- todo highlight
     {
-        -- TODO: use telescope or trouble to filter todos
         'folke/todo-comments.nvim',
         keys = {
+            { '<leader>t', '<cmd>TodoTelescope<cr>' }
             -- { ']t', function() require 'todo-comments'.jump_next() end },
             -- { '[t', function() require 'todo-comments'.jump_prev() end }
         },
@@ -315,7 +314,7 @@ return {
                 },
                 INFO = {
                     color = 'info',
-                    alt = { 'INF', 'NOTE' }
+                    alt = { 'INF', 'NOTE', 'PREF', 'OPTIM' }
                 },
                 HINT = {
                     color = 'hint',
@@ -338,6 +337,7 @@ return {
         opts = {
             default_mappings = false
         }
+        -- TODO: keys to add or toggle uppercase marks
     }
 
 }
