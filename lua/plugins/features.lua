@@ -182,6 +182,7 @@ return {
         'epwalsh/obsidian.nvim',
         version = '*',
         lazy = true,
+        enabled = vim.fn.isdirectory(vim.fn.expand('~/wiki')) == 1,
         keys = {
             { '<leader>nd', '<cmd>ObsidianToday<cr>' },
             { '<leader>nn', '<cmd>ObsidianNew<cr>' },
@@ -227,7 +228,7 @@ return {
                 template = 'daily.md'
             },
             templates = {
-                folder = '_templates'
+                folder = '_template'
             },
             completion = {
                 nvim_cmp = true
@@ -340,4 +341,3 @@ return {
     }
 
 }
-
