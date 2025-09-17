@@ -346,6 +346,16 @@ return {
         keys = {
             { 'g.', function() require 'actions-preview'.code_actions() end }
         }
+    },
+
+    -- lsp signature
+    {
+        'ray-x/lsp_signature.nvim',
+        event = "InsertEnter",
+        opts = {
+            bind = true
+        }
     }
+
 
 }
