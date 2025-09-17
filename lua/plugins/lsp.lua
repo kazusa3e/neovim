@@ -17,25 +17,18 @@ return {
             }
 
             -- enable inlay hint be default
-            -- WARN: but ikn why rust_analyzer will be failed on startup
             vim.lsp.inlay_hint.enable(true)
 
-            vim.lsp.config['lua-language-server'] = require 'lang/lua_ls'
+            -- disable lsp server log
+            vim.lsp.set_log_level("off")
 
-            local enabled_lsp_servers = {
-                'clangd',
-                'rust_analyzer',
-                'basedpyright',
-                'ruff',
-                'ts_ls',
-                'lua_ls',
-                'dockerls',
-                'docker_compose_language_service',
-                'bashls'
-            }
-            for _, srv in ipairs(enabled_lsp_servers) do
-                vim.lsp.enable(srv)
-            end
+            vim.lsp.enable({
+                'clangd', 'rust_analyzer', 'basedpyright', 'lua_ls', 'gopls',
+                'dockerls', 'docker_compose_language_service',
+                'bashls',
+                'marksman',
+
+            })
 
             -- TODO: it's time to uninstall mason plugin
         end,
