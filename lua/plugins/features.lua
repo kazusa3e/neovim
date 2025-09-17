@@ -338,6 +338,14 @@ return {
             default_mappings = false
         }
         -- TODO: keys to add or toggle uppercase marks
+    },
+
+    -- code action preview
+    {
+        'aznhe21/actions-preview.nvim',
+        keys = {
+            { 'g.', function() require 'actions-preview'.code_actions() end }
+        }
     }
 
 }

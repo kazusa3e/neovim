@@ -36,7 +36,6 @@ return {
             { 'gd', function() vim.lsp.buf.definition() end },
             { 'gh', function() vim.lsp.buf.hover { border = 'solid' } end },
             { 'gR', function() vim.lsp.buf.rename() end },
-            { 'g.', function() vim.lsp.buf.code_action() end },
             { 'gf', function() vim.lsp.buf.format { async = true } end },
 
             { 'gi', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end },
