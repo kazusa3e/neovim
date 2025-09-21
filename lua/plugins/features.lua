@@ -363,9 +363,24 @@ return {
         'github/copilot.vim',
         event = "InsertEnter",
         config = function()
+
+            -- keymap
             vim.g.copilot_no_tab_map = true
             -- TODO: Use <c-n> to accept suggestions if copilot status is ready
             vim.keymap.set('i', '<c-n>', 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true, replace_keycodes = false })
+
+            -- filetypes
+            vim.g.copilot_filetypes = {
+                ['*'] = true,
+                ['markdown'] = false,
+                ['help'] = false,
+                ['gitcommit'] = false,
+                ['gitrebase'] = false,
+                ['hgcommit'] = false,
+                ['svn'] = false,
+                ['cvs'] = false,
+                ['text'] = false,
+            }
         end
     }
 
