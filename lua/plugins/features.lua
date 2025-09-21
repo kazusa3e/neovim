@@ -244,6 +244,7 @@ return {
                 }
             },
             ui = {
+                enable = false,
                 checkboxes = {
                     [" "] = { char = "󰄰", hl_group = "ObsidianTodo" },
                     ["/"] = { char = "󰪟", hl_group = "ObsidianTilde" },
