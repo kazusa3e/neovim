@@ -15,8 +15,12 @@ return {
         opts = {
             mirage = true,
             terminal = false,
+            overrides = {
+                Comment = { italic = false },
+                CursorLine = { bg = "#000000" },
+            }
         },
-        config = function(opts, _)
+        config = function(_, opts)
             require 'ayu'.setup(opts)
             if os.getenv('USE_THEME') == 'light' then
                 vim.cmd [[colorscheme ayu]]
@@ -29,7 +33,7 @@ return {
         "olimorris/onedarkpro.nvim",
         enabled = false,
         lazy = false,
-        config = function(opts, _)
+        config = function(_, opts)
             require 'onedarkpro'.setup(opts)
             vim.cmd [[colorscheme onedark]]
         end
