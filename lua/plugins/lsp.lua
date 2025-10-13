@@ -25,6 +25,7 @@ return {
             vim.lsp.enable({
                 'clangd', 'rust_analyzer', 'basedpyright', 'lua_ls', 'gopls',
                 'dockerls', 'docker_compose_language_service',
+                'cmake',
                 'bashls',
                 'marksman',
 
