@@ -372,10 +372,10 @@ return {
             -- filetypes
             vim.g.copilot_filetypes = {
                 ['*'] = true,
-                ['markdown'] = false,
+                -- ['markdown'] = false,
                 ['help'] = false,
-                ['gitcommit'] = false,
-                ['gitrebase'] = false,
+                -- ['gitcommit'] = false,
+                -- ['gitrebase'] = false,
                 ['hgcommit'] = false,
                 ['svn'] = false,
                 ['cvs'] = false,
