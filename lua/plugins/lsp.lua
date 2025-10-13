@@ -6,10 +6,10 @@ return {
         dependencies = { 'williamboman/mason.nvim' },
         config = function()
             vim.diagnostic.config {
-                -- virtual_text = {
-                --     prefix = '',
-                --     current_line = false
-                -- },
+                virtual_text = {
+                    prefix = '',
+                    current_line = false
+                },
                 severity_sort = true,
                 virtual_lines = {
                     current_line = true
