@@ -22,3 +22,4 @@ safe_umap('n', 'grr')
 safe_umap('n', 'gra')
 safe_umap('n', 'grn')
 
+vim.opt.fillchars:append("diff:╱")
