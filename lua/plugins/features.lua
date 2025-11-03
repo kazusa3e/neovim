@@ -327,6 +327,13 @@ return {
                 warning = { 'DiagnosticWarn' },
                 info = { 'DiagnosticInfo' },
                 hint = { 'DiagnosticHint' },
+            },
+            search = {
+                command = 'rg',
+                pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]],
+            },
+            highlight = {
+                pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
             }
         }
     },
