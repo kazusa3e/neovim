@@ -96,7 +96,16 @@ return {
     -- illuminate
     {
         'rrethy/vim-illuminate'
-    }
+    },
 
+    -- markdown
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+            bullet = {
+                icons = { '▪' }
+            }
+        }
+    }
 
 }
