@@ -97,7 +97,11 @@ return {
 
     -- surround
     {
-        'tpope/vim-surround'
+        'tpope/vim-surround',
+        keys = {
+            { 's', 'ys', remap = true, mode = { "n" } },
+            { 's', 'S', remap = true, mode = { "x" } },
+        },
     },
 
     -- align
