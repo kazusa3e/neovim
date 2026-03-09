@@ -1,7 +1,7 @@
 return {
     {
         "sainnhe/edge",
-        enabled = false,
+        enabled = true,
         lazy = false,
         config = function()
             vim.g.edge_enable_italic = false
@@ -10,7 +10,7 @@ return {
     },
     {
         "shatur/neovim-ayu",
-        enabled = true,
+        enabled = false,
         lazy = false,
         opts = {
             mirage = true,
