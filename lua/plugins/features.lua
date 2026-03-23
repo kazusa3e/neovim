@@ -246,11 +246,11 @@ return {
             ui = {
                 enable = false,
                 checkboxes = {
-                    [" "] = { char = "󰄰", hl_group = "ObsidianTodo" },
-                    ["/"] = { char = "󰪟", hl_group = "ObsidianTilde" },
-                    ["x"] = { char = "󰗠", hl_group = "ObsidianDone" },
-                    ["?"] = { char = "󰋗", hl_group = "ObsidianRightArrow" },
-                    ["-"] = { char = "󰅙", hl_group = "ObsidianRightArrow" },
+                    [" "] = { char = "󰄱 ", hl_group = "ObsidianTodo" },
+                    ["x"] = { char = "󰱒 ", hl_group = "ObsidianDone" },
+                    ["?"] = { char = "󰟶 ", hl_group = "DiagnosticSignInfo" },
+                    ["-"] = { char = "󰅖 ", hl_group = "DiagnosticSignHint" },
+                    ["/"] = { char = "󰚭 ", hl_group = "DiagnosticSignWarn" },
                 }
             }
         },
