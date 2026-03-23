@@ -101,11 +101,17 @@ return {
     -- markdown
     {
         'MeanderingProgrammer/render-markdown.nvim',
+        enabled = true,
         opts = {
-            bullet = {
-                icons = { '▪' }
+            checkbox = {
+                custom = {
+                    in_question = { raw = '[?]', rendered = '󰟶 ', highlight = 'DiagnosticSignInfo', scope_highlight = nil },
+                    cenceled = { raw = '[-]', rendered = '󰅖 ', highlight = 'DiagnosticSignHint', scope_highlight = nil },
+                    in_progress = { raw = '[/]', rendered = '󰚭 ', highlight = 'DiagnosticSignWarn', scope_highlight = nil },
+                }
             }
         }
     }
 
 }
+
