@@ -23,7 +23,7 @@ return {
             vim.lsp.set_log_level("off")
 
             vim.lsp.enable({
-                'clangd', 'rust_analyzer', 'basedpyright', 'lua_ls', 'gopls',
+                'clangd', 'rust_analyzer', 'ty', 'lua_ls', 'gopls',
                 'dockerls', 'docker_compose_language_service',
                 'cmake',
                 'bashls',
