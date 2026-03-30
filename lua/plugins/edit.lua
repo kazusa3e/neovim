@@ -98,6 +98,7 @@ return {
     -- surround
     {
         'tpope/vim-surround',
+        event = { 'BufReadPost', 'BufNewFile' },
         keys = {
             { 's', 'ys', remap = true, mode = { "n" } },
             { 's', 'S', remap = true, mode = { "x" } },
