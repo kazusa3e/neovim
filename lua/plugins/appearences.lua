@@ -95,7 +95,13 @@ return {
 
     -- illuminate
     {
-        'rrethy/vim-illuminate'
+        'rrethy/vim-illuminate',
+        config = function()
+            vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#8c00ff" })
+            -- TODO(kazusa): consider use different color for read/write?
+            vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#8c00ff" })
+            vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#8c00ff" })
+        end
     },
 
     -- markdown
