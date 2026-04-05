@@ -11,11 +11,12 @@ return {
             'L3MON4D3/LuaSnip',
             dependencies = {
                 'saadparwaiz1/cmp_luasnip',
-                'rafamadriz/friendly-snippets'
+                -- 'rafamadriz/friendly-snippets'
             },
             config = function ()
-                require 'luasnip.loaders.from_snipmate'.load { path = { 'snippets' } }
-                require 'luasnip.loaders.from_vscode'.lazy_load()
+                -- require 'luasnip.loaders.from_snipmate'.load { path = { 'snippets' } }
+                require 'luasnip.loaders.from_vscode'.lazy_load { paths = { vim.fn.expand ('~/Work/vscode_settings/profiles/main/data/snippets') } }
+                require 'luasnip.loaders.from_vscode'.lazy_load { }
             end
         }
     },
