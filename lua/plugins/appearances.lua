@@ -1,16 +1,11 @@
 return {
-    -- lualine
     {
         'nvim-lualine/lualine.nvim',
         event = 'VeryLazy',
-        dependencies = {
-            'f-person/git-blame.nvim'
-        },
         config = function()
-            local gitblame = require 'gitblame'
             require 'lualine'.setup {
                 options = {
-                    theme = 'ayu',
+                    theme = 'auto',
                     component_separators = '',
                     section_separators = { left = '', right = '' },
                     disabled_filetypes = { 'NvimTree' },
@@ -24,27 +19,18 @@ return {
                     lualine_c = {
                         {
                             'diagnostics',
-                            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                            symbols = { error = '󰅙 ', warn = '󰀪 ', info = '󰋽 ', hint = '󰌶 ' },
                         },
-                        {
-                            function() return require 'nvim-treesitter'.statusline {} end
-                        },
-                        {
-                            gitblame.get_current_blame_text,
-                            cond = gitblame.is_blame_text_available
-                        }
                     },
                     lualine_x = {
-                        -- { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } }
+                        { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
                         { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'LF' } },
                     },
                     lualine_y = {
-                        -- 'encoding',
-                        -- 'filetype',
                         'lsp_status'
                     },
                     lualine_z = {
-                        { 'branch', icon = 'שׂ' },
+                        { 'branch', icon = '' },
                         'location'
                     }
                 }
@@ -52,25 +38,24 @@ return {
         end
     },
 
-    -- git signs
     {
         'lewis6991/gitsigns.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         keys = {
-            { '<leader>gd', '<cmd>Gitsigns preview_hunk<cr>' },
-            { '<leader>gr', '<cmd>Gitsigns reset_hunk<cr>' },
-            { '<leader>gR', '<cmd>Gitsigns reset_buffer<cr>' },
-            { '<leader>ga', '<cmd>Gitsigns stage_hunk<cr>' },
-            { '<leader>gA', '<cmd>Gitsigns stage_buffer<cr>' },
-            { '[g', '<cmd>Gitsigns prev_hunk<cr>' },
-            { ']g', '<cmd>Gitsigns next_hunk<cr>' },
+            { '<leader>gd', '<cmd>Gitsigns preview_hunk<cr>', desc = 'Preview hunk' },
+            { '<leader>gr', '<cmd>Gitsigns reset_hunk<cr>',   desc = 'Reset hunk' },
+            { '<leader>gR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'Reset buffer' },
+            { '<leader>ga', '<cmd>Gitsigns stage_hunk<cr>',   desc = 'Stage hunk' },
+            { '<leader>gA', '<cmd>Gitsigns stage_buffer<cr>', desc = 'Stage buffer' },
+            { '[g',         '<cmd>Gitsigns prev_hunk<cr>',    desc = 'Previous hunk' },
+            { ']g',         '<cmd>Gitsigns next_hunk<cr>',    desc = 'Next hunk' },
         },
         config = function()
             require 'gitsigns'.setup {
                 numhl = true,
                 signcolumn = false,
                 word_diff = false,
-                current_line_blame = false,
+                current_line_blame = true,
                 current_line_blame_opts = {
                     virtual_text = true,
                     virtual_text_pos = 'eol',
@@ -83,28 +68,15 @@ return {
         end,
     },
 
-    -- git blame
-    {
-        'f-person/git-blame.nvim',
-        config = function()
-            vim.g.gitblame_date_format = '%r'
-			vim.g.gitblame_message_when_not_committed = ''
-			vim.g.gitblame_display_virtual_text = 0
-        end
-    },
-
-    -- illuminate
     {
         'rrethy/vim-illuminate',
         config = function()
             vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#8c00ff" })
-            -- TODO(kazusa): consider use different color for read/write?
             vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#8c00ff" })
             vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#8c00ff" })
         end
     },
 
-    -- markdown
     {
         'MeanderingProgrammer/render-markdown.nvim',
         enabled = true,
@@ -112,12 +84,10 @@ return {
             checkbox = {
                 custom = {
                     in_question = { raw = '[?]', rendered = '󰟶 ', highlight = 'DiagnosticSignInfo', scope_highlight = nil },
-                    cenceled = { raw = '[-]', rendered = '󰅖 ', highlight = 'DiagnosticSignHint', scope_highlight = nil },
+                    cancelled = { raw = '[-]', rendered = '󰅖 ', highlight = 'DiagnosticSignHint', scope_highlight = nil },
                     in_progress = { raw = '[/]', rendered = '󰚭 ', highlight = 'DiagnosticSignWarn', scope_highlight = nil },
                 }
             }
         }
     }
-
 }
-

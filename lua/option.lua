@@ -1,25 +1,32 @@
+-- ~/.vimrc contains only settings shared between vim and neovim
 vim.cmd [[ source $HOME/.vimrc ]]
 
 vim.g.clipboard = 'osc52'
+vim.opt.exrc = true
+
+-- comment: q → gc operator, qq → gcc line
+vim.keymap.set('n', 'q', 'gc', { remap = true, desc = 'Comment operator' })
+vim.keymap.set('n', 'qq', 'gcc', { remap = true, desc = 'Comment line' })
+vim.keymap.set('v', 'q', 'gc', { remap = true, desc = 'Comment line' })
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = false
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'markdown',
-    command = 'setlocal tw=0'
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
 })
 
-local function safe_umap(mode, lhs)
-    if vim.fn.maparg(lhs, mode) ~= '' then
-        vim.cmd(string.format('%sunmap %s', mode, lhs))
-    end
-end
+-- restore cursor position on reopen
+vim.api.nvim_create_autocmd('BufReadPost', {
+    callback = function()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        end
+    end,
+})
 
--- disable some builtin keybindings
-safe_umap('n', 'gc')
-safe_umap('n', 'gcc')
-safe_umap('n', 'grt')
-safe_umap('n', 'gri')
-safe_umap('n', 'grr')
-safe_umap('n', 'gra')
-safe_umap('n', 'grn')
-
-vim.opt.fillchars:append("diff:╱")
+-- vim.opt.fillchars:append("diff:╱")

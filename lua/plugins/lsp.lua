@@ -1,9 +1,7 @@
 return {
-    -- lspconfig
     {
         'neovim/nvim-lspconfig',
         event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = { 'williamboman/mason.nvim' },
         config = function()
             vim.diagnostic.config {
                 virtual_text = {
@@ -16,11 +14,16 @@ return {
                 }
             }
 
-            -- enable inlay hint be default
             vim.lsp.inlay_hint.enable(true)
+            vim.lsp.log.set_level(vim.log.levels.WARN)
 
-            -- disable lsp server log
-            vim.lsp.set_log_level("off")
+            -- format on save, skip if project disables it
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                callback = function()
+                    if vim.g.format_on_save == false then return end
+                    vim.lsp.buf.format { async = false, timeout_ms = 2000 }
+                end,
+            })
 
             vim.lsp.enable({
                 'clangd', 'rust_analyzer', 'ty', 'lua_ls', 'gopls',
@@ -30,31 +33,11 @@ return {
                 'marksman',
 
             })
-
-            -- TODO: it's time to uninstall mason plugin
         end,
         keys = {
-            { 'gd', function() vim.lsp.buf.definition() end },
-            { 'gh', function() vim.lsp.buf.hover { border = 'solid' } end },
-            { 'gR', function() vim.lsp.buf.rename() end },
-            { 'gf', function() vim.lsp.buf.format { async = true } end },
-
-            { 'gi', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end },
-            { 'gu', function()
-                local conf = vim.diagnostic.config()
-                vim.diagnostic.config {
-                    virtual_text = not conf.virtual_text
-                }
-            end },
+            { 'gd', function() vim.lsp.buf.definition() end,           desc = 'Goto definition' },
+            { 'gh', function() vim.lsp.buf.hover() end,                desc = 'Hover' },
+            { 'gf', function() vim.lsp.buf.format { async = true } end, desc = 'Format' },
         }
     },
-
-    -- mason
-    {
-        'williamboman/mason.nvim',
-        cmd = 'Mason',
-        config = function()
-            require 'mason'.setup {}
-        end
-    }
 }

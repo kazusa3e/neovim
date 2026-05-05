@@ -4,14 +4,14 @@ return {
         enabled = true,
         lazy = false,
         config = function()
-            vim.g.edge_enable_italic = false
+            -- vim.g.edge_enable_italic = false
             vim.cmd [[colorscheme edge]]
         end
     },
     {
         "shatur/neovim-ayu",
         enabled = false,
-        lazy = false,
+        event = 'VeryLazy',
         opts = {
             mirage = true,
             terminal = false,
@@ -32,7 +32,7 @@ return {
     {
         "olimorris/onedarkpro.nvim",
         enabled = false,
-        lazy = false,
+        event = 'VeryLazy',
         config = function(_, opts)
             require 'onedarkpro'.setup(opts)
             vim.cmd [[colorscheme onedark]]
