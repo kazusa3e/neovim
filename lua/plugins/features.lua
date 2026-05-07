@@ -71,6 +71,7 @@ return {
 
             -- terminal
             { '<c-q>',      function() Snacks.terminal.toggle(nil, { win = { position = 'float' } }) end,       mode = { 'n', 't', 'i' },      desc = 'Float terminal' },
+            { '`',          '<c-\\><c-n>',                                                                      mode = { 't' },                desc = 'Float terminal normal mode' },
             { '<leader>gg', function() Snacks.terminal.toggle('lazygit', { win = { position = 'float' } }) end, desc = 'Lazygit' },
 
             -- diagnostics
@@ -113,6 +114,7 @@ return {
             },
             search = {
                 command = 'rg',
+                -- todo: case insensitive
                 pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]],
             },
             highlight = {
