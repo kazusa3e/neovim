@@ -81,6 +81,7 @@ return {
         'MeanderingProgrammer/render-markdown.nvim',
         enabled = true,
         opts = {
+            render_modes = { 'n', 'c', 't', 'i' },
             checkbox = {
                 custom = {
                     in_question = { raw = '[?]', rendered = '󰟶 ', highlight = 'DiagnosticSignInfo', scope_highlight = nil },
