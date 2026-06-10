@@ -1,7 +1,7 @@
 return {
     {
         "sainnhe/edge",
-        enabled = true,
+        enabled = false,
         lazy = false,
         config = function()
             -- vim.g.edge_enable_italic = false
@@ -36,6 +36,14 @@ return {
         config = function(_, opts)
             require 'onedarkpro'.setup(opts)
             vim.cmd [[colorscheme onedark]]
+        end
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        enabled = true,
+        event = 'VeryLazy',
+        config = function(_, opts)
+            vim.cmd [[colorscheme oxocarbon]]
         end
     }
 }
