@@ -1,10 +1,14 @@
 return {
     {
         "sainnhe/edge",
-        enabled = false,
+        enabled = true,
         lazy = false,
         config = function()
             -- vim.g.edge_enable_italic = false
+            vim.g.edge_better_performance = 1
+            vim.g.edge_colors_override = {
+                bg0 = { '#262729', 234 }
+            }
             vim.cmd [[colorscheme edge]]
         end
     },
@@ -40,7 +44,7 @@ return {
     },
     {
         "nyoom-engineering/oxocarbon.nvim",
-        enabled = true,
+        enabled = false,
         event = 'VeryLazy',
         config = function(_, opts)
             vim.cmd [[colorscheme oxocarbon]]
