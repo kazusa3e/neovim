@@ -1,0 +1,42 @@
+-- Tree-sitter Parser Installation
+--
+-- Neovim 0.12 ships tree-sitter highlighting, folding, and injection support
+-- out of the box. No plugin required. No config required.
+--
+-- Built-in parsers (bundled with Neovim 0.12):
+--   c, lua, markdown, query, vim, vimdoc
+--
+-- Official repositories (pacman):
+--   sudo pacman -S tree-sitter-bash tree-sitter-python tree-sitter-rust
+--
+--   Available in extra:
+--     bash (tree-sitter-bash), python (tree-sitter-python),
+--     rust (tree-sitter-rust), javascript (tree-sitter-javascript)
+--
+-- AUR:
+--   yay -S tree-sitter-cpp tree-sitter-go tree-sitter-json \
+--          tree-sitter-yaml tree-sitter-regex
+--
+--   Package                  | Verified on AUR
+--   -------------------------|----------------
+--   tree-sitter-cpp          | ✅ aur.archlinux.org/packages/tree-sitter-cpp
+--   tree-sitter-go           | ✅ aur.archlinux.org/packages/tree-sitter-go
+--   tree-sitter-json         | ✅ aur.archlinux.org/packages/tree-sitter-json
+--   tree-sitter-yaml         | ✅ aur.archlinux.org/packages/tree-sitter-yaml
+--   tree-sitter-regex        | ✅ aur.archlinux.org/packages/tree-sitter-regex
+--   tree-sitter-dockerfile   | ⚠️  git-only, 0 votes (skip unless needed)
+--
+--   Or compile manually with nvim-treesitter plugin:
+--     1. sudo pacman -S tree-sitter-cli
+--     2. Add neovim-treesitter/nvim-treesitter to install parsers
+--     3. :TSInstall <language>
+--
+-- Check status: :checkhealth vim.treesitter
+-- List loaded:  :lua print(vim.inspect(vim.treesitter.language.get_inspect()))
+
+-- Auto-start treesitter for all filetypes
+-- vim.api.nvim_create_autocmd('FileType', {
+--     callback = function(args)
+--         pcall(vim.treesitter.start, args.buf)
+--     end,
+-- })
