@@ -6,10 +6,8 @@
 -- Update with: vim.pack.update() → review → :write to confirm
 
 vim.pack.add({
-  { src = 'https://github.com/neovim/nvim-lspconfig' },
-
-  -- tree-sitter parser + query installer (nvim-treesitter fork).
-  -- Registry must be on rtp so nvim-treesitter can find parsers.
-  { src = 'https://github.com/neovim-treesitter/treesitter-parser-registry' },
-  { src = 'https://github.com/neovim-treesitter/nvim-treesitter' },
+    -- tree-sitter parser + query installer (nvim-treesitter fork).
+    -- Registry must be on rtp so nvim-treesitter can find parsers.
+    { src = 'https://github.com/neovim-treesitter/treesitter-parser-registry' },
+    { src = 'https://github.com/neovim-treesitter/nvim-treesitter' },
 })
