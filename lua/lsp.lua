@@ -130,6 +130,25 @@ vim.lsp.config['bashls'] = {
     root_markers = { '.git' },
 }
 
+vim.lsp.config['cmake'] = {
+    cmd = { 'cmake-language-server' },
+    filetypes = { 'cmake' },
+    root_markers = { 'CMakeLists.txt', 'CMakePresets.json', 'CMakeLists.txt.in', '.git' },
+}
+
+-- ty: Astral's fast Python type checker + language server (Rust).
+-- Started with `ty server`. Configure via settings.ty.*
+-- (see https://docs.astral.sh/ty/configuration/).
+vim.lsp.config['ty'] = {
+    cmd = { 'ty', 'server' },
+    filetypes = { 'python' },
+    root_markers = {
+        'pyproject.toml', 'setup.py', 'setup.cfg',
+        'requirements.txt', 'Pipfile', 'pyrightconfig.json',
+        '.git',
+    },
+}
+
 -- Enable language servers
 vim.lsp.enable({
     'clangd',
@@ -137,4 +156,6 @@ vim.lsp.enable({
     'lua_ls',
     'rust_analyzer',
     'bashls',
+    'cmake',
+    'ty',
 })

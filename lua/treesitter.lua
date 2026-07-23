@@ -32,7 +32,7 @@ end
 -- (Bundled languages are skipped automatically.)
 nvim_treesitter.install {
   'c', 'cpp', 'go', 'python', 'rust',
-  'bash', 'dockerfile',
+  'bash', 'dockerfile', 'cmake',
   'json', 'yaml', 'toml',
 }
 

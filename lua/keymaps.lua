@@ -19,12 +19,11 @@ vim.keymap.set('v', 'q', 'gc', { remap = true, desc = 'Comment selection' })
 -- Completion (built-in vim.lsp.completion, no plugin)
 --
 -- <C-Space>  trigger completion manually
--- <Tab>      inside popup: cycle to next item; else jump to next snippet tabstop
--- <S-Tab>    inside popup: cycle to previous item; else jump to previous tabstop
--- <CR>       inside popup: accept selected item (<C-y>); otherwise normal newline
+-- <Tab>      inside popup: accept selected item (<C-y>); else jump to next snippet tabstop
+-- Up/Down    cycle selection inside the popup (default keys)
 --
--- completeopt is "noselect" so no item is pre-selected; cycle with Tab, then <CR>
--- (or <C-y>) to accept.
+-- completeopt is "noselect" so no item is pre-selected; pick with Up/Down,
+-- then <Tab> (or <C-y>) to accept.
 local function pumvisible()
     return vim.fn.pumvisible() ~= 0
 end
@@ -43,24 +42,10 @@ end, { desc = 'Trigger completion' })
 
 vim.keymap.set('i', '<Tab>', function()
     if pumvisible() then
-        return '<C-n>'
+        return '<C-y>'
     elseif vim.snippet.active({ direction = 1 }) then
         vim.snippet.jump(1)
     else
         return '<Tab>'
     end
-end, { expr = true, silent = true, desc = 'Completion next / snippet next' })
-
-vim.keymap.set('i', '<S-Tab>', function()
-    if pumvisible() then
-        return '<C-p>'
-    elseif vim.snippet.active({ direction = -1 }) then
-        vim.snippet.jump(-1)
-    else
-        return '<S-Tab>'
-    end
-end, { expr = true, silent = true, desc = 'Completion prev / snippet prev' })
-
-vim.keymap.set('i', '<CR>', function()
-    return pumvisible() and '<C-y>' or '<CR>'
-end, { expr = true, silent = true, desc = 'Accept completion' })
+end, { expr = true, silent = true, desc = 'Accept completion / snippet next' })
