@@ -17,15 +17,3 @@ vim.opt.signcolumn = 'yes'
 -- 'nofoldenable' is set in ~/.vimrc (shared with Vim).
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
-
--- Native insert-mode auto-completion (Neovim 0.12+).
--- Fires on word-char typing, pulling from 'complete' sources (buffer etc.).
--- Does NOT drive LSP; LSP trigger chars (., ::) are handled by
--- vim.lsp.completion.enable in lsp.lua.
-vim.o.autocomplete = true
-
--- 'completeopt' base value (menuone,noselect) is set in ~/.vimrc, shared
--- with Vim. 'popup' (docs for selected item in a popup window) is
--- Neovim-only, so append it here.
-vim.opt.completeopt:append('popup')
