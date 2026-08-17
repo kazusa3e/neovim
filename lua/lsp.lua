@@ -149,6 +149,11 @@ vim.lsp.config['ty'] = {
     },
 }
 
+vim.lsp.config['nil_ls'] = {
+    cmd = { 'nil' },
+    filetypes = { 'nix' }
+}
+
 -- Enable language servers
 vim.lsp.enable({
     'clangd',
@@ -158,4 +163,5 @@ vim.lsp.enable({
     'bashls',
     'cmake',
     'ty',
+    'nil_ls'
 })
