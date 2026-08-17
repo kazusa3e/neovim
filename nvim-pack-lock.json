@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "conform.nvim": {
+      "rev": "016802de402556da54c36bd7359b441266b01cdd",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "mini.diff": {
+      "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
+      "src": "https://github.com/nvim-mini/mini.diff"
+    },
     "nvim-lspconfig": {
       "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "https://github.com/neovim/nvim-lspconfig"

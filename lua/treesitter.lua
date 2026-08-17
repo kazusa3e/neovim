@@ -24,26 +24,38 @@
 
 local ok, nvim_treesitter = pcall(require, 'nvim-treesitter')
 if not ok then
-  vim.notify('nvim-treesitter not installed; run :lua vim.pack.update()', vim.log.levels.WARN)
-  return
+    -- Install on first use (blocking, needs git + network). The registry must
+    -- be on runtimepath so nvim-treesitter can find parsers.
+    require('pack').ensure('nvim-treesitter')
+    require('pack').ensure('treesitter-parser-registry')
+    nvim_treesitter = require('nvim-treesitter')
 end
+
+local ok_install, install = pcall(require, 'nvim-treesitter.install')
+if ok_install and install.get_package_path then
+    local fork_runtime = install.get_package_path('runtime')
+    if vim.fn.isdirectory(fork_runtime) == 1 then
+        vim.opt.rtp:prepend(fork_runtime)
+    end
+end
+
 
 -- Parsers to install on startup. :install is a no-op when already present.
 -- (Bundled languages are skipped automatically.)
 nvim_treesitter.install {
-  'c', 'cpp', 'go', 'python', 'rust',
-  'bash', 'dockerfile', 'cmake',
-  'json', 'yaml', 'toml',
+    'c', 'cpp', 'go', 'python', 'rust',
+    'bash', 'dockerfile', 'cmake',
+    'json', 'yaml', 'toml',
 }
 
 -- Features are NOT enabled by default; attach per buffer on FileType.
 -- Folds are already global via vim.opt.foldexpr (see options.lua).
 vim.api.nvim_create_autocmd('FileType', {
-  callback = function(args)
-    local buf = args.buf
-    if pcall(vim.treesitter.start, buf) then
-      -- tree-sitter indentation (falls back to ftplugin when no parser)
-      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    end
-  end,
+    callback = function(args)
+        local buf = args.buf
+        if pcall(vim.treesitter.start, buf) then
+            -- tree-sitter indentation (falls back to ftplugin when no parser)
+            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+    end,
 })
