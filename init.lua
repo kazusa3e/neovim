@@ -1,6 +1,6 @@
-vim.cmd.source('$HOME/.vimrc')
+vim.cmd.source("$HOME/.vimrc")
 
-require('pack')
-require('options')
-require('keymaps')
-require('plugins')
+require("pack")
+require("options")
+require("keymaps")
+require("plugins")

@@ -2,12 +2,12 @@
 -- (vim-shared maps are in ~/.vimrc; plugin maps in their respective files)
 
 -- Comment operator: q → gc (tree-sitter aware, builtin)
-vim.keymap.set('n', 'qq', 'gcc', { remap = true, desc = 'Comment line' })
-vim.keymap.set('v', 'q', 'gc', { remap = true, desc = 'Comment selection' })
+vim.keymap.set("n", "qq", "gcc", { remap = true, desc = "Comment line" })
+vim.keymap.set("v", "q", "gc", { remap = true, desc = "Comment selection" })
 
 -- LSP keymaps (no default bindings; these are global since they no-op without a server)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'LSP: go to definition' })
-vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'LSP: hover' })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: go to definition" })
+vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP: hover" })
 -- TODO: references
 
 -- Completion (built-in vim.lsp.completion, no plugin)
@@ -19,7 +19,7 @@ vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = 'LSP: hover' })
 -- completeopt is "noselect" so no item is pre-selected; pick with Up/Down,
 -- then <Tab> (or <C-y>) to accept.
 local function pumvisible()
-    return vim.fn.pumvisible() ~= 0
+	return vim.fn.pumvisible() ~= 0
 end
 
 -- Manual trigger. The function name varies across 0.11/0.12 (trigger vs get);
@@ -34,19 +34,19 @@ end
 --     end
 -- end, { desc = 'Trigger completion' })
 
-vim.keymap.set('i', '<Tab>', function()
-    if pumvisible() then
-        return '<C-y>'
-    elseif vim.snippet.active({ direction = 1 }) then
-        vim.snippet.jump(1)
-    else
-        return '<Tab>'
-    end
-end, { expr = true, silent = true, desc = 'Accept completion / snippet next' })
+vim.keymap.set("i", "<Tab>", function()
+	if pumvisible() then
+		return "<C-y>"
+	elseif vim.snippet.active({ direction = 1 }) then
+		vim.snippet.jump(1)
+	else
+		return "<Tab>"
+	end
+end, { expr = true, silent = true, desc = "Accept completion / snippet next" })
 
-vim.keymap.set('i', '<CR>', function()
-    if pumvisible() then
-        return '<C-e><CR>'
-    end
-    return '<CR>'
-end, { expr = true, silent = true, desc = 'Cancel completion / newline' })
+vim.keymap.set("i", "<CR>", function()
+	if pumvisible() then
+		return "<C-e><CR>"
+	end
+	return "<CR>"
+end, { expr = true, silent = true, desc = "Cancel completion / newline" })
