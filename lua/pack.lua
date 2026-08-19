@@ -14,6 +14,7 @@ local SRC = {
 	["treesitter-parser-registry"] = "https://github.com/neovim-treesitter/treesitter-parser-registry",
 	["mini.diff"] = "https://github.com/nvim-mini/mini.diff",
 	["conform.nvim"] = "https://github.com/stevearc/conform.nvim",
+	["mini.pick"] = "https://github.com/nvim-mini/mini.pick",
 }
 
 --- Install (if missing) and load a plugin on first use. Idempotent.

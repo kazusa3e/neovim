@@ -4,6 +4,7 @@ local plugins = {
 	lsp = true, -- native LSP config (no external plugin)
 	minidiff = true, -- mini.diff: git diff hunks in the sign column
 	conform = true, -- conform.nvim: external formatters with LSP fallback
+	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
 }
 
 if plugins.treesitter then
@@ -20,4 +21,8 @@ end
 
 if plugins.conform then
 	require("plugins.conform")
+end
+
+if plugins.pick then
+	require("plugins.pick")
 end
