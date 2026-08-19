@@ -41,17 +41,102 @@ vim.lsp.inlay_hint.enable(true)
 -- Code lens
 vim.lsp.codelens.enable(true)
 
--- LSP-driven completion on server trigger characters (e.g. '.', '::').
--- Manual trigger: <C-Space> (vim.lsp.completion.get).
--- 'autocomplete' for word-char typing lives in options.lua.
+-- LSP-driven completion: VSCode-like, on every word character (not only the
+-- server's trigger chars like . :: ->) so candidates pop up as you type an
+-- identifier and filter down live. 'autocomplete' stays off for LSP buffers
+-- (its popup suppressed these LSP triggers via the pumvisible() guard when
+-- both were on); non-LSP buffers get native 'autocomplete' as fallback below.
+-- completeopt gains "preinsert" in options.lua so the first candidate is only
+-- ghosted, not committed, while typing.
+local function word_chars()
+	local chars = {}
+	for i = 97, 122 do
+		table.insert(chars, string.char(i))
+	end -- a-z
+	for i = 65, 90 do
+		table.insert(chars, string.char(i))
+	end -- A-Z
+	for i = 48, 57 do
+		table.insert(chars, string.char(i))
+	end -- 0-9
+	table.insert(chars, "_")
+	return chars
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client and client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+			local provider = vim.tbl_get(client.server_capabilities, "completionProvider") or {}
+			-- Extend the server's trigger chars with plain identifier chars.
+			local seen = {}
+			for _, ch in ipairs(provider.triggerCharacters or {}) do
+				seen[ch] = true
+			end
+			for _, ch in ipairs(word_chars()) do
+				seen[ch] = true
+			end
+			provider.triggerCharacters = vim.tbl_keys(seen)
+			vim.lsp.completion.enable(true, client.id, ev.buf, {
+				autotrigger = true,
+			})
+			-- The native autocomplete popup must NOT overlap the LSP popup
+			-- (it swallows the LSP trigger via the pumvisible() guard).
+			vim.bo[ev.buf].autocomplete = false
 		end
 	end,
 })
+
+-- ---------------------------------------------------------------------------
+-- "Always pop up the completion menu" (VSCode-like):
+--
+-- * Buffer WITH a completion-capable LSP server: vim.lsp.completion autotriggers
+--   on every word char (above). 'autocomplete' stays off for these buffers
+--   (setting it here in case the fallback enabled it earlier).
+-- * Buffer WITHOUT one (md/txt/json/yaml/...): fall back to the native
+--   'autocomplete' buffer-word completion from 'complete' (set in ~/.vimrc),
+--   which also pops on every word char.
+--
+-- 'autocomplete' is a global-local option (buffer-scoped via vim.bo), so each
+-- buffer gets its own mode. Changing it mid-typing with an open popup is
+-- avoided by skipping when the popup is visible.
+-- ---------------------------------------------------------------------------
+local function sync_completion_mode(bufnr)
+	if vim.fn.pumvisible() ~= 0 then
+		return
+	end
+	-- Skip special buffers (terminal, quickfix, ...): no insert typing there.
+	if vim.bo[bufnr].buftype:match("%w") then
+		vim.bo[bufnr].autocomplete = false
+		return
+	end
+	local has_lsp = #vim.lsp.get_clients({ bufnr = bufnr, method = "textDocument/completion" }) > 0
+	vim.bo[bufnr].autocomplete = not has_lsp
+end
+
+-- New / reopened buffers
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "FileType" }, {
+	callback = function(ev)
+		sync_completion_mode(ev.buf)
+	end,
+})
+
+-- An LSP server attached later: hand the buffer over to LSP completion.
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		sync_completion_mode(ev.buf)
+	end,
+})
+
+-- No LSP server for this buffer anymore: native autocomplete takes over again.
+vim.api.nvim_create_autocmd("LspDetach", {
+	callback = function(ev)
+		sync_completion_mode(ev.buf)
+	end,
+})
+
+-- Cover the buffer that was open when this module loaded.
+sync_completion_mode(vim.api.nvim_get_current_buf())
 
 -- Server definitions (no nvim-lspconfig).
 -- root_markers: nested lists are equal-priority alternatives (any match
