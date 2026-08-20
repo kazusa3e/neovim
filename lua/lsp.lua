@@ -239,9 +239,20 @@ vim.lsp.config["ty"] = {
 	},
 }
 
-vim.lsp.config["nil_ls"] = {
-	cmd = { "nil" },
+vim.lsp.config["nixd"] = {
+	cmd = { "nixd" },
 	filetypes = { "nix" },
+	root_markers = { "flake.nix", ".git" },
+	settings = {
+		nixd = {
+			nixpkgs = {
+				expr = "import <nixpkgs> { }",
+			},
+			formatting = {
+				command = { "nixfmt" },
+			},
+		},
+	},
 }
 
 -- Enable language servers
@@ -253,5 +264,5 @@ vim.lsp.enable({
 	"bashls",
 	"cmake",
 	"ty",
-	"nil_ls",
+	"nixd",
 })
