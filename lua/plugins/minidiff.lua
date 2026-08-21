@@ -1,7 +1,9 @@
 -- mini.diff: show git diff hunks in the sign column + navigate/apply hunks.
 -- Installed on first use (see lua/pack.lua). Requires git >= 2.38.
 
-require("pack").ensure("mini.diff")
+if not require("pack").ensure("mini.diff") then
+	return
+end
 
 require("mini.diff").setup({
 	view = {

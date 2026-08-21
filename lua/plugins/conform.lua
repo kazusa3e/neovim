@@ -5,7 +5,9 @@
 --   <leader>gq (vimrc)  -> gq  -> conform formatexpr (whole buffer)
 --   :ConformInfo        -> conform diagnostics
 
-require("pack").ensure("conform.nvim")
+if not require("pack").ensure("conform.nvim") then
+	return
+end
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -30,7 +32,9 @@ require("conform").setup({
 	-- format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
 })
 
+local group = vim.api.nvim_create_augroup("ConformFormatExpr", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType", "LspAttach" }, {
+	group = group,
 	callback = function(ev)
 		vim.bo[ev.buf].formatexpr = "v:lua.require('conform').formatexpr()"
 	end,

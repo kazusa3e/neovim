@@ -1,6 +1,7 @@
 -- Plugin toggles. Set to `false` to skip installing/loading a plugin.
 local plugins = {
 	treesitter = true, -- nvim-treesitter (+ parser registry): highlight/indent/parsers
+	completion = true, -- blink.cmp: LSP/path/snippet/buffer completion
 	lsp = true, -- native LSP config (no external plugin)
 	minidiff = true, -- mini.diff: git diff hunks in the sign column
 	conform = true, -- conform.nvim: external formatters with LSP fallback
@@ -9,6 +10,11 @@ local plugins = {
 
 if plugins.treesitter then
 	require("treesitter")
+end
+
+-- Load completion before LSP so blink.cmp can extend client capabilities.
+if plugins.completion then
+	require("plugins.blink")
 end
 
 if plugins.lsp then
