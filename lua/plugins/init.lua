@@ -4,6 +4,7 @@ local plugins = {
 	completion = true, -- blink.cmp: LSP/path/snippet/buffer completion
 	lsp = true, -- native LSP config (no external plugin)
 	minidiff = true, -- mini.diff: git diff hunks in the sign column
+	surround = true, -- vim-surround: add/delete/change via `s`/`ds`/`cs` (VS Code-style `s`)
 	conform = true, -- conform.nvim: external formatters with LSP fallback
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
 }
@@ -23,6 +24,10 @@ end
 
 if plugins.minidiff then
 	require("plugins.minidiff")
+end
+
+if plugins.surround then
+	require("plugins.surround")
 end
 
 if plugins.conform then
