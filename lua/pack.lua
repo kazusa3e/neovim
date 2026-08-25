@@ -16,6 +16,7 @@ local SRC = {
 	["conform.nvim"] = "https://github.com/stevearc/conform.nvim",
 	["mini.pick"] = "https://github.com/nvim-mini/mini.pick",
 	["blink.cmp"] = "https://github.com/Saghen/blink.cmp",
+	["nvim-autopairs"] = "https://github.com/windwp/nvim-autopairs",
 }
 
 local VERSION = {

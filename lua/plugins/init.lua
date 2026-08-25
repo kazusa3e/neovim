@@ -7,6 +7,7 @@ local plugins = {
 	surround = true, -- vim-surround: add/delete/change via `s`/`ds`/`cs` (VS Code-style `s`)
 	conform = true, -- conform.nvim: external formatters with LSP fallback
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
+	autopairs = true, -- nvim-autopairs: insert and manage matching delimiters
 }
 
 if plugins.treesitter then
@@ -16,6 +17,10 @@ end
 -- Load completion before LSP so blink.cmp can extend client capabilities.
 if plugins.completion then
 	require("plugins.blink")
+end
+
+if plugins.autopairs then
+	require("plugins.autopairs")
 end
 
 if plugins.lsp then
