@@ -8,7 +8,12 @@ local plugins = {
 	conform = true, -- conform.nvim: external formatters with LSP fallback
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
 	autopairs = true, -- nvim-autopairs: insert and manage matching delimiters
+	edge = true, -- edge: colorscheme
 }
+
+if plugins.edge then
+	require("plugins.edge")
+end
 
 if plugins.treesitter then
 	require("treesitter")

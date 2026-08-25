@@ -9,6 +9,10 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "edge": {
+      "rev": "7ec78c21bd8f0b2b0b47043bb1e730c561647c72",
+      "src": "https://github.com/sainnhe/edge"
+    },
     "mini.diff": {
       "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
       "src": "https://github.com/nvim-mini/mini.diff"
