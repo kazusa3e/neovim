@@ -7,7 +7,8 @@ end
 
 require("mini.diff").setup({
 	view = {
-		style = "sign", -- or 'number'
+		-- style = "sign", -- or 'number'
+		style = "number"
 	},
 	mappings = {
 		apply = "<leader>ga",
