@@ -12,7 +12,7 @@ local SRC = {
 	["treesitter-parser-registry"] = "https://github.com/neovim-treesitter/treesitter-parser-registry",
 
 	["mini.diff"] = "https://github.com/nvim-mini/mini.diff",
-	["vim-surround"] = "https://github.com/tpope/vim-surround",
+	["nvim-surround"] = "https://github.com/kylechui/nvim-surround",
 	["conform.nvim"] = "https://github.com/stevearc/conform.nvim",
 	["mini.pick"] = "https://github.com/nvim-mini/mini.pick",
 	["blink.cmp"] = "https://github.com/Saghen/blink.cmp",
@@ -22,6 +22,7 @@ local SRC = {
 }
 
 local VERSION = {
+	["nvim-surround"] = vim.version.range("4.*"),
 	["blink.cmp"] = vim.version.range("1.*"),
 }
 
