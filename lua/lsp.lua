@@ -3,9 +3,19 @@
 -- Keep root_markers explicit so attach behavior is visible (a hidden
 -- global root_markers was the source of past cpp-completion bugs).
 
--- Diagnostics: minimal — signs + underline only, hover or CursorHold for detail
+-- Diagnostics: undercurl + focused end-of-line messages; the float retains full detail.
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = {
+		prefix = "●",
+		spacing = 2,
+		source = "if_many",
+		virt_text_pos = "eol",
+		current_line = true,
+		severity = {
+			vim.diagnostic.severity.ERROR,
+			vim.diagnostic.severity.WARN,
+		},
+	},
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,

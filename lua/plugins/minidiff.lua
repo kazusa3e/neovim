@@ -5,7 +5,8 @@ if not require("pack").ensure("mini.diff") then
 	return
 end
 
-require("mini.diff").setup({
+local minidiff = require("mini.diff")
+minidiff.setup({
 	view = {
 		-- style = "sign", -- or 'number'
 		style = "number"
@@ -21,3 +22,7 @@ require("mini.diff").setup({
 		goto_next = "]g",
 	},
 })
+
+vim.keymap.set("n", "<leader>gr", function()
+	return minidiff.operator("reset") .. "gh"
+end, { expr = true, remap = true, desc = "Reset hunk" })

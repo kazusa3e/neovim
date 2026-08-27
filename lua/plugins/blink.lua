@@ -17,15 +17,23 @@ require("blink.cmp").setup({
 
 	sources = {
 		providers = {
-			-- Buffer words are a last-resort LSP fallback. Restrict them to the
-			-- current buffer and a longer prefix to reduce unrelated suggestions.
+			lsp = {
+				-- Show buffer words alongside LSP results instead of only as a fallback.
+				fallbacks = {},
+			},
+
 			buffer = {
+				-- Scan all loaded, listed file buffers, including hidden buffers.
 				min_keyword_length = function(ctx)
 					return ctx.trigger.initial_kind == "manual" and 0 or 3
 				end,
 				opts = {
 					get_bufnrs = function()
-						return { vim.api.nvim_get_current_buf() }
+						return vim.tbl_filter(function(bufnr)
+							return vim.bo[bufnr].buflisted
+								and vim.api.nvim_buf_is_loaded(bufnr)
+								and vim.bo[bufnr].buftype == ""
+						end, vim.api.nvim_list_bufs())
 					end,
 				},
 			},
