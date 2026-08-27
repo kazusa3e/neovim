@@ -18,6 +18,7 @@ local SRC = {
 	["blink.cmp"] = "https://github.com/Saghen/blink.cmp",
 	["nvim-autopairs"] = "https://github.com/windwp/nvim-autopairs",
 	["edge"] = "https://github.com/sainnhe/edge",
+	["toggleterm.nvim"] = "https://github.com/akinsho/toggleterm.nvim",
 }
 
 local VERSION = {

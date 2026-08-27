@@ -9,6 +9,7 @@ local plugins = {
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
 	autopairs = true, -- nvim-autopairs: insert and manage matching delimiters
 	edge = true, -- edge: colorscheme
+	terminal = true, -- toggleterm.nvim: persistent floating shell and LazyGit
 }
 
 if plugins.edge then
@@ -46,4 +47,8 @@ end
 
 if plugins.pick then
 	require("plugins.pick")
+end
+
+if plugins.terminal then
+	require("plugins.toggle-terminal")
 end
