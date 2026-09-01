@@ -13,9 +13,9 @@
       "rev": "7ec78c21bd8f0b2b0b47043bb1e730c561647c72",
       "src": "https://github.com/sainnhe/edge"
     },
-    "mini.diff": {
-      "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
-      "src": "https://github.com/nvim-mini/mini.diff"
+    "gitsigns.nvim": {
+      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "mini.pick": {
       "rev": "04e73ab07222508361095bb6e27621b315e6b9f1",
