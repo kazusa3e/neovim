@@ -172,6 +172,12 @@ vim.lsp.config["nixd"] = {
 	},
 }
 
+vim.lsp.config["taplo"] = {
+	cmd = { "taplo", "lsp", "stdio" },
+	filetypes = { "toml" },
+	root_markers = { ".taplo.toml", "taplo.toml", ".git" },
+}
+
 -- Enable language servers
 vim.lsp.enable({
 	"clangd",
@@ -182,4 +188,5 @@ vim.lsp.enable({
 	"cmake",
 	"ty",
 	"nixd",
+	"taplo",
 })

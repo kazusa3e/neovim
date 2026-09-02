@@ -21,6 +21,7 @@ require("conform").setup({
 		sh = { "shfmt" },
 		cmake = { "cmake-format" },
 		nix = { "nixfmt" },
+		toml = { "taplo" },
 		json = { "prettierd", "prettier" },
 		yaml = { "prettierd", "prettier" },
 		markdown = { "prettierd", "prettier" },
