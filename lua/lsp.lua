@@ -82,8 +82,8 @@ vim.lsp.config["clangd"] = {
 
 vim.lsp.config["gopls"] = {
 	cmd = { "gopls" },
-	filetypes = { "go", "gomod" },
-	root_markers = { "go.mod", ".git" },
+	filetypes = { "go", "gomod", "gowork" },
+	root_markers = { "go.work", "go.mod", ".git" },
 	settings = {
 		gopls = {
 			hints = {

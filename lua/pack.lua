@@ -3,6 +3,7 @@
 -- Plugins are installed to site/pack/core/opt/ by default.
 -- Missing plugins from the lockfile are offered at startup and installed only
 -- after confirmation. Run :PackInstall to retry or install newly configured plugins.
+-- Restart Neovim after :PackInstall to load plugins with their configuration.
 -- Update with: vim.pack.update() → review → :write to confirm
 
 local M = {}
@@ -53,7 +54,9 @@ vim.api.nvim_create_user_command("PackInstall", function()
 	for name in pairs(SRC) do
 		table.insert(specs, spec(name))
 	end
-	vim.pack.add(specs, { confirm = true })
-end, { desc = "Install configured Neovim plugins" })
+	-- Plugin configs may have returned early; loading scripts alone cannot replay them.
+	vim.pack.add(specs, { confirm = true, load = false })
+	vim.notify("Restart Neovim to configure any newly installed plugins.", vim.log.levels.INFO)
+end, { desc = "Install configured Neovim plugins (restart to apply)" })
 
 return M

@@ -22,6 +22,15 @@ require("blink.cmp").setup({
 				fallbacks = {},
 			},
 
+			snippets = {
+				opts = {
+					friendly_snippets = false,
+					search_paths = {
+						vim.env.NVIM_SNIPPETS_DIR or "/repos/vscode_settings/profiles/main/data/snippets",
+					},
+				},
+			},
+
 			buffer = {
 				-- Scan all loaded, listed file buffers, including hidden buffers.
 				min_keyword_length = function(ctx)
