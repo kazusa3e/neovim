@@ -5,6 +5,16 @@ if not require("pack").ensure("toggleterm.nvim") then
 	return
 end
 
+local function make_terminal_background_transparent()
+	vim.api.nvim_set_hl(0, "TermNormal", { bg = "NONE" })
+end
+
+make_terminal_background_transparent()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("ToggleTermTransparentBackground", { clear = true }),
+	callback = make_terminal_background_transparent,
+})
+
 require("toggleterm").setup({
 	open_mapping = nil,
 	direction = "float",
@@ -31,7 +41,7 @@ local function toggle_shell()
 end
 
 vim.keymap.set("n", "<C-q>", toggle_shell, { desc = "Toggle floating terminal" })
-vim.keymap.set("t", "<C-q>", [[<C-\><C-n><cmd>ToggleTerm direction=float<CR>]], { desc = "Toggle floating terminal" })
+vim.keymap.set("t", "<C-q>", [[<Cmd>ToggleTerm direction=float<CR>]], { desc = "Toggle floating terminal" })
 vim.keymap.set("t", "`", [[<C-\><C-n>]], { desc = "Terminal normal mode" })
 
 local Terminal = require("toggleterm.terminal").Terminal
