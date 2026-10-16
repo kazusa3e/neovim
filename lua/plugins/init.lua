@@ -7,6 +7,7 @@ local plugins = {
 	surround = true, -- nvim-surround: add/delete/change via `s`/`ds`/`cs` (VS Code-style `s`)
 	conform = true, -- conform.nvim: external formatters with LSP fallback
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
+	explorer = true, -- nvim-tree.lua: file tree sidebar
 	autopairs = true, -- nvim-autopairs: insert and manage matching delimiters
 	edge = true, -- edge: colorscheme
 	terminal = true, -- toggleterm.nvim: persistent floating shell and LazyGit
@@ -47,6 +48,10 @@ end
 
 if plugins.pick then
 	require("plugins.pick")
+end
+
+if plugins.explorer then
+	require("plugins.nvim-tree")
 end
 
 if plugins.terminal then

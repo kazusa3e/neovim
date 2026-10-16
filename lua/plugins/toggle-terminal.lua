@@ -5,16 +5,6 @@ if not require("pack").ensure("toggleterm.nvim") then
 	return
 end
 
-local function make_terminal_background_transparent()
-	vim.api.nvim_set_hl(0, "TermNormal", { bg = "NONE" })
-end
-
-make_terminal_background_transparent()
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = vim.api.nvim_create_augroup("ToggleTermTransparentBackground", { clear = true }),
-	callback = make_terminal_background_transparent,
-})
-
 require("toggleterm").setup({
 	open_mapping = nil,
 	direction = "float",
