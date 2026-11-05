@@ -3,7 +3,7 @@
 
 -- Comment operator: q → gc (tree-sitter aware, builtin)
 vim.keymap.set("n", "qq", "gcc", { remap = true, desc = "Comment line" })
-vim.keymap.set("v", "q", "gc", { remap = true, desc = "Comment selection" })
+vim.keymap.set("x", "q", "gc", { remap = true, desc = "Comment selection" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: go to definition" })
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, { desc = "LSP: hover" })
