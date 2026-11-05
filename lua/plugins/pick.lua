@@ -23,7 +23,7 @@ local function mtime_match(path_at)
 
 		local items = pick.get_picker_items() or {}
 		local function time(ind)
-			local path = path_at(items[ind], stritems[ind])
+			local path = path_at(items[ind])
 			if not path or path == "" then
 				return 0
 			end
@@ -49,8 +49,8 @@ local function files(local_opts)
 	return pick.builtin.files(local_opts, {
 		source = {
 			cwd = cwd,
-			match = mtime_match(function(_, stritem)
-				return vim.fs.joinpath(cwd, stritem)
+			match = mtime_match(function(item)
+				return item and vim.fs.joinpath(cwd, item) or nil
 			end),
 		},
 	})
