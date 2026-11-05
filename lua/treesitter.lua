@@ -28,7 +28,7 @@ if has_nvim_treesitter then
 	pack.ensure("treesitter-parser-registry")
 end
 
-local ok, nvim_treesitter = pcall(require, "nvim-treesitter")
+local ok = pcall(require, "nvim-treesitter")
 
 local ok_install, install = pcall(require, "nvim-treesitter.install")
 if ok_install and install.get_package_path then
@@ -48,11 +48,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	callback = function(args)
 		local buf = args.buf
-		if pcall(vim.treesitter.start, buf) then
-			-- tree-sitter indentation (falls back to ftplugin when no parser)
-			if ok then
-				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			end
+		if not pcall(vim.treesitter.start, buf) or not ok then
+			return
+		end
+
+		-- Preserve ftplugin indentation when no usable indent query exists.
+		local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+		local has_query, query = pcall(vim.treesitter.query.get, lang, "indents")
+		if has_query and query then
+			vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 		end
 	end,
 })
