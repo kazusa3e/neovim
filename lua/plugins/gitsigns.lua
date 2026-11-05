@@ -10,6 +10,11 @@ local gitsigns = require("gitsigns")
 gitsigns.setup({
 	signcolumn = false,
 	numhl = true,
+	current_line_blame = true,
+	current_line_blame_opts = {
+		delay = 500,
+		virt_text_pos = "right_align",
+	},
 	word_diff = false,
 	preview_config = {
 		border = "rounded",
