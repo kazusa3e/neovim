@@ -7,6 +7,7 @@ local plugins = {
 	surround = true, -- nvim-surround: add/delete/change via `s`/`ds`/`cs` (VS Code-style `s`)
 	conform = true, -- conform.nvim: external formatters with LSP fallback
 	pick = true, -- mini.pick: fuzzy finder (files/buffers/grep)
+	whichkey = true, -- which-key.nvim: keybinding hints
 	explorer = true, -- nvim-tree.lua: file tree sidebar
 	autopairs = true, -- nvim-autopairs: insert and manage matching delimiters
 	edge = true, -- edge: colorscheme
@@ -56,4 +57,8 @@ end
 
 if plugins.terminal then
 	require("plugins.toggle-terminal")
+end
+
+if plugins.whichkey then
+	require("plugins.which-key")
 end
