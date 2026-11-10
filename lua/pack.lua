@@ -15,6 +15,7 @@ local SRC = {
 	["gitsigns.nvim"] = "https://github.com/lewis6991/gitsigns.nvim",
 	["nvim-surround"] = "https://github.com/kylechui/nvim-surround",
 	["conform.nvim"] = "https://github.com/stevearc/conform.nvim",
+	["SchemaStore.nvim"] = "https://github.com/b0o/SchemaStore.nvim",
 	["mini.pick"] = "https://github.com/nvim-mini/mini.pick",
 	["which-key.nvim"] = "https://github.com/folke/which-key.nvim",
 	["nvim-tree.lua"] = "https://github.com/nvim-tree/nvim-tree.lua",

@@ -189,7 +189,17 @@ vim.lsp.config["taplo"] = {
 	cmd = { "taplo", "lsp", "stdio" },
 	filetypes = { "toml" },
 	root_markers = { ".taplo.toml", "taplo.toml", ".git" },
+	settings = {
+		evenBetterToml = {
+			schema = { enabled = true },
+		},
+	},
 }
+
+local json_schemas
+if require("pack").ensure("SchemaStore.nvim") then
+	json_schemas = require("schemastore").json.schemas()
+end
 
 vim.lsp.config["jsonls"] = {
 	cmd = { "vscode-json-language-server", "--stdio" },
@@ -197,7 +207,20 @@ vim.lsp.config["jsonls"] = {
 	root_markers = { "package.json", ".git" },
 	settings = {
 		json = {
+			schemas = json_schemas,
 			validate = { enable = true },
+		},
+	},
+}
+
+vim.lsp.config["yamlls"] = {
+	cmd = { "yaml-language-server", "--stdio" },
+	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+	root_markers = { ".git" },
+	settings = {
+		yaml = {
+			validate = true,
+			schemaStore = { enable = true },
 		},
 	},
 }
@@ -214,4 +237,5 @@ vim.lsp.enable({
 	"nixd",
 	"taplo",
 	"jsonls",
+	"yamlls",
 })
