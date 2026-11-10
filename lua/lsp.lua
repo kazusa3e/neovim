@@ -27,6 +27,19 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = "",
 		},
 	},
+	status = {
+		format = function(counts)
+			local signs = vim.diagnostic.config().signs.text
+			local items = {}
+			for severity, name in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+				local count = counts[severity] or 0
+				if count > 0 then
+					items[#items + 1] = ("%%#DiagnosticSign%s#%s %d"):format(name, signs[severity], count)
+				end
+			end
+			return table.concat(items, "  ")
+		end,
+	},
 	float = {
 		border = "rounded",
 		source = "if_many",
