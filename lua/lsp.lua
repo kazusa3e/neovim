@@ -41,7 +41,6 @@ vim.diagnostic.config({
 		end,
 	},
 	float = {
-		border = "rounded",
 		source = "if_many",
 	},
 })
@@ -55,7 +54,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		vim.diagnostic.open_float(nil, {
 			focusable = false,
 			scope = "cursor",
-			border = "rounded",
 			source = "if_many",
 		})
 	end,

@@ -11,7 +11,7 @@ vim.g.clipboard = "osc52"
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
 -- 0.11+: default floating-window border
--- vim.opt.winborder = "shadow"
+vim.opt.winborder = "rounded"
 -- always show sign column (no shifting)
 vim.opt.signcolumn = "yes"
 
